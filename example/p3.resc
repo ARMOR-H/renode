@@ -1,0 +1,4 @@
+mach create
+machine LoadPlatformDescription @platforms/cpus/stm32wb05.repl
+sysbus LoadELF @example/p3.elf
+machine StartGdbServer 3333
