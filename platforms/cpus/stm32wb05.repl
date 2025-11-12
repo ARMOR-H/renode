@@ -20,8 +20,11 @@ pwr: Miscellaneous.STM32WB05_PWR @ sysbus 0x48500000
 
 rcc: Miscellaneous.STM32WB05_RCC @ sysbus 0x48400000
 
-i2c1: I2C.STM32WB05_I2C @ sysbus 0x41000000
+i2c: I2C.STM32WB05_I2C @ sysbus 0x41000000
     IRQ -> nvic@3
+
+usart: UART.STM32WB05_USART @ sysbus 0x41004000
+    intercept: true
 
 sysbus:
     init:

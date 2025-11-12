@@ -12,7 +12,8 @@
 	// "features": {},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
-		3333
+		3333,
+		12345
 	],
 	// Uncomment the next line to run commands after the container is created.
 	// "postCreateCommand": "cat /etc/os-release",
@@ -23,7 +24,7 @@
 				"ms-dotnettools.csdevkit"
 			]
 		}
-	}
+	},
 	// Configure tool-specific properties.
 	// "customizations": {},
 	// Uncomment to connect as an existing user other than the container default. More info: https://aka.ms/dev-containers-non-root.

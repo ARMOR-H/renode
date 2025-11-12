@@ -113,13 +113,29 @@ namespace Antmicro.Renode.EmulationEnvironment
             }
         }
 
+        public decimal LightLevel
+        {
+            get
+            {
+                return sensorValueAndUpdateDelegates[typeof(IPhotodetector)].Value;
+            }
+
+            set
+            {
+                sensorValueAndUpdateDelegates[typeof(IPhotodetector)].Value = value;
+                UpdateSensorsOfType<IPhotodetector>(value);
+            }
+        }
+
         [PostDeserialization]
         private void InitSensorDelegates()
         {
             sensorValueAndUpdateDelegates = new Dictionary<Type, SensorValueAndUpdateDelegate>()
             {
                 { typeof(ITemperatureSensor), new SensorValueAndUpdateDelegate() { Setter = (ISensor sensor, decimal value) => ((ITemperatureSensor)sensor).Temperature = value } },
-                { typeof(IHumiditySensor), new SensorValueAndUpdateDelegate() { Setter = (ISensor sensor, decimal value) => ((IHumiditySensor)sensor).Humidity = value } }
+                { typeof(IHumiditySensor), new SensorValueAndUpdateDelegate() { Setter = (ISensor sensor, decimal value) => ((IHumiditySensor)sensor).Humidity = value } },
+                { typeof(IPhotodetector), new SensorValueAndUpdateDelegate() { Setter = (ISensor sensor, decimal value) => ((IPhotodetector)sensor).LightLevel = value } }
+
             };
         }
 
