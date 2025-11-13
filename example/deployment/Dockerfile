@@ -8,4 +8,5 @@ RUN mv /renode_* /renode
 WORKDIR /renode
 ADD example example/
 
+EXPOSE 12345
 CMD ["./renode", "--console",  "example/p3.resc"]
