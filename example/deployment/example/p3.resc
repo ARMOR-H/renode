@@ -6,7 +6,7 @@ machine StartGdbServer 3333
 
 logLevel -1 sysbus.i2c.photodetector
 
-emulation CreateServerSocketTerminal 12345 "term" 
+emulation CreateServerSocketTerminal 12345 "term" false
 connector Connect sysbus.usart term
 
 macro reset
@@ -17,4 +17,5 @@ runMacro $reset
 
 emulation CreateEnvironment "env"
 machine SetEnvironment env
+showAnalyzer usart
 start
