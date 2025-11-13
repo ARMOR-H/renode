@@ -4,6 +4,8 @@ mach create
 machine LoadPlatformDescription @example/p3.repl
 machine StartGdbServer 3333
 
+logLevel -1 sysbus.i2c.photodetector
+
 emulation CreateServerSocketTerminal 12345 "term" 
 connector Connect sysbus.usart term
 
@@ -15,5 +17,3 @@ runMacro $reset
 
 emulation CreateEnvironment "env"
 machine SetEnvironment env
-
-showAnalyzer usart

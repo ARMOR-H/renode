@@ -1,0 +1,4 @@
+using "platforms/cpus/stm32wb05.repl"
+
+photodetector: Sensors.AS7341 @ i2c 0x39
+    intercept: true
