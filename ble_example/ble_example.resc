@@ -1,0 +1,23 @@
+$bin?=@ble_example/BLE_Beacon.elf
+
+mach create
+machine LoadPlatformDescription @ble_example/ble_example.repl
+# machine StartGdbServer 3333
+
+logLevel -1 sysbus.i2c.photodetector
+logLevel -1 sysbus.ble
+
+emulation CreateServerSocketTerminal 9999 "term" false
+
+macro reset
+"""
+    sysbus LoadELF $bin
+"""
+runMacro $reset
+# connector Connect sysbus.ble.proxy term
+
+emulation CreateEnvironment "env"
+machine SetEnvironment env
+# cpu LogFunctionNames true true
+
+start
