@@ -12,7 +12,7 @@
             "cwd": "${config:workspacePointer}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
-            "stopAtEntry": false
+            "stopAtEntry": true
         },
         {
             "name": "Attach",

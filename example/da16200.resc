@@ -1,0 +1,13 @@
+$bin?=@example/sdk_ueboot.elf
+
+mach create
+machine LoadPlatformDescription @platforms/cpus/renesas_da16200.repl
+machine StartGdbServer 3333
+
+macro reset
+"""
+    sysbus LoadELF $bin
+"""
+
+runMacro $reset
+logLevel -1

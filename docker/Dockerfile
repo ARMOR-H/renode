@@ -34,3 +34,4 @@ RUN apt-get update && apt-get install -y \
 
 ADD ./ /tmp/renode
 RUN pip3 install --no-cache-dir -r /tmp/renode/tests/requirements.txt
+RUN pip3 install --no-cache-dir 'pyrenode3[all] @ git+https://github.com/antmicro/pyrenode3.git'

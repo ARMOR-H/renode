@@ -1,0 +1,4 @@
+set skip_function_script
+"""
+sysbus.cpu.PC = sysbus.cpu.LR
+"""

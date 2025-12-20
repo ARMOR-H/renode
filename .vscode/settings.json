@@ -1,3 +1,4 @@
 {
     "workspacePointer": "${workspaceFolder}",
+    "idf.pythonInstallPath": "/usr/bin/python3",
 }
