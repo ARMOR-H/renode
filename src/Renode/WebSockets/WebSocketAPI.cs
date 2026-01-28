@@ -100,20 +100,7 @@ namespace Antmicro.Renode.WebSockets
 
         private void OnClientDisconnect(WebSocketConnection sender)
         {
-            if(sender != SharedData.MainConnection)
-            {
-                return;
-            }
-
-            SharedData.ClearEmulationEvent?.Invoke();
-
-            foreach(var endp in new List<string> { "/telnet/29169", "/telnet/29170" })
-            {
-                foreach(var conn in WebSocketsManager.Instance.GetConnections(endp))
-                {
-                    conn.Dispose();
-                }
-            }
+            // Currently, we do not need to handle anything on client disconnect
         }
 
         private void ClearEmulation()
@@ -287,7 +274,7 @@ namespace Antmicro.Renode.WebSockets
             var serializedEvent = JsonConvert.SerializeObject(eventResponse);
 
             Logger.Log(LogLevel.Debug, $"Event raised: {serializedEvent.ToString()}");
-            SharedData.MainConnection?.Send(Encoding.UTF8.GetBytes(serializedEvent));
+            // SharedData.MainConnection?.Send(Encoding.UTF8.GetBytes(serializedEvent));
         }
 
         private void SendErrorMessage(string version, int id, String errorMessage = null)

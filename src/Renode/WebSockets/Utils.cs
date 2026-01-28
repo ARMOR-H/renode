@@ -99,7 +99,6 @@ namespace Antmicro.Renode.WebSockets
         }
 
         public WebSocketConnection CurrentConnection;
-        public WebSocketConnection MainConnection;
         public Action ClearEmulationEvent;
         public Action NewClientConnection;
         public readonly DefaultVariable<string> Cwd;
