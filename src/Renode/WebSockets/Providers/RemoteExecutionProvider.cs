@@ -78,7 +78,7 @@ namespace Antmicro.Renode.WebSockets.Providers
 
         private void UnhandledAccessHandler(UnhandledAccess access)
         {
-            UnknownSymbolEvent.RaiseEvent(new UnknownSymbolEventData
+            UnhandledAccessEvent.RaiseEvent(new UnhandledAccessEventData
             {
                 Name = access.Symbol.Name,
                 PC = access.PC,
@@ -143,8 +143,8 @@ namespace Antmicro.Renode.WebSockets.Providers
         [WebSocketAPIEvent("emulation-state-changed", "1.5.0")]
         private readonly WebSocketAPIEventHandler EmulatorStateChangedEvent;
 
-        [WebSocketAPIEvent("unknown-symbol", "1.5.0")]
-        private readonly WebSocketAPIEventHandler UnknownSymbolEvent;
+        [WebSocketAPIEvent("unhandled-access", "1.5.0")]
+        private readonly WebSocketAPIEventHandler UnhandledAccessEvent;
 
         [WebSocketAPIEvent("function-call", "1.5.0")]
         private readonly WebSocketAPIEventHandler FunctionCallEvent;
@@ -156,7 +156,7 @@ namespace Antmicro.Renode.WebSockets.Providers
             public string Value;
         }
 
-        private class UnknownSymbolEventData
+        private class UnhandledAccessEventData
         {
             [JsonProperty("name")]
             public string Name;
