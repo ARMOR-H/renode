@@ -80,7 +80,7 @@ namespace Antmicro.Renode.WebSockets.Providers
         {
             UnhandledAccessEvent.RaiseEvent(new UnhandledAccessEventData
             {
-                Name = access.Symbol.Name,
+                Name = access.Symbol?.Name ?? "<unknown>",
                 PC = access.PC,
                 Write = access.Access == Access.Write,
                 Address = access.Address,
