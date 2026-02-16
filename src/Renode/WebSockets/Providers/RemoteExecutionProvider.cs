@@ -116,7 +116,7 @@ namespace Antmicro.Renode.WebSockets.Providers
             {
                 foreach(var cpu in machine.SystemBus.GetCPUs())
                 {
-                    if(!machine.SystemBus.TryGetAllSymbolAddresses(symbol, out var addressesEnumerable, cpu))
+                    if(machine.SystemBus.TryGetAllSymbolAddresses(symbol, out var addressesEnumerable, cpu))
                     {
                         var pc = addressesEnumerable.First();
                         cpu.PC = pc;
