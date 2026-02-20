@@ -212,7 +212,6 @@ namespace Antmicro.Renode.WebSockets.Providers
                     return WebSocketAPIUtils.CreateEmptyActionResponse();
                 }
             }
-            throw new NotImplementedException();
         }
 
         [WebSocketAPIAction("read-registers", "1.5.0")]
@@ -244,7 +243,6 @@ namespace Antmicro.Renode.WebSockets.Providers
                     return WebSocketAPIUtils.CreateActionResponse(result);
                 }
             }
-            throw new NotImplementedException();
         }
 
         [WebSocketAPIAction("set-constant", "1.5.0")]
@@ -263,7 +261,25 @@ namespace Antmicro.Renode.WebSockets.Providers
                 machine.SystemBus.Tag(range, name, value, overridePeripheralAccesses: true);
                 return WebSocketAPIUtils.CreateEmptyActionResponse();
             }
-            throw new NotImplementedException();
+        }
+
+        [WebSocketAPIAction("get-symbols", "1.5.0")]
+        private WebSocketAPIResponse GetSymbols(bool functionOnly)
+        {
+            var emulationManager = EmulationManager.Instance;
+            var emulation = emulationManager.CurrentEmulation;
+            var machine = emulation.Machines.FirstOrDefault();
+            if(machine == null)
+            {
+                return WebSocketAPIUtils.CreateEmptyActionResponse("No machine found in the current emulation");
+            }
+            else
+            {
+                var symbolLookup = machine.SystemBus.GetLookup();
+                IEnumerable<Symbol> symbolsIterator = symbolLookup.GetSymbols(functionOnly);
+                var namedSymbols = symbolsIterator.Select((symbol) => symbol.Name).Where((name) => name != null).ToList();
+                return WebSocketAPIUtils.CreateActionResponse(namedSymbols);
+            }
         }
 
         private WebSocketAPISharedData SharedData;
